@@ -36,7 +36,8 @@ const Game = {
 
     reset: function() {
         this.background = new Background(this.ctx, this.width , this.height)
-        this.player = new Player(this.ctx, this.width * 0.20, this.height * 0.20, "img/pig prueba.png", this.width, this.height, this.keys);
+        this.player = new Player(this.ctx, this.width * 0.10, this.height * 0.10, "img/pig-right-move.png", this.width, this.height, this.keys);
+        // this.ctx, 50, 150, 'img/player.png', this.width,this.height, this.playerKeys
     },
 
 
@@ -48,13 +49,13 @@ const Game = {
 
     drawAll: function(){
         this.background.draw();
-        this.player.draw();
+        this.player.draw(this.framesCounter);
     },
 
 
-    moveAll: function() {
+    // moveAll: function() {
         
-    }
+    // }
  
 
 

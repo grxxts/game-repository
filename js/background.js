@@ -5,7 +5,7 @@ class Background {
         this.height = height;
 
         this.image = new Image();
-        this.image.src = "img/background-prueba.jpg";
+        this.image.src = "img/6-vector-game-backgrounds-8003_imgs_8003_1.png";
 
         this.posX = 0;
         this.posY = 0;

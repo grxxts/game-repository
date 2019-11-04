@@ -8,23 +8,30 @@ class Player {
         this.image.src = image;
 
         this.posX = 50;
-        this.posY = gameHeight * 0.98 - this.height;
+        this.posY = gameHeight * 0.20 - this.height;
         this.vy = 1;
         // this.gravity = 0.4;
         this.gameWidth = gameWidth;
+        this.frames = 2;
+        this.framesIndex = 0;
+
+        this.keys = keys;
     }
 
 
-    draw() {
+    draw(framesCounter) {
         this.ctx.drawImage(
           this.image, 
-          
+          this.framesIndex * Math.floor(this.image.width / this.frames),
+          0,
+          Math.floor(this.image.width / this.frames),
+          this.image.height,
           this.posX, 
           this.posY, 
           this.width, 
           this.height
           )
-          
+          this.animate(framesCounter);
         
       }
 
@@ -39,6 +46,15 @@ class Player {
           }
       }
 
+      animate(framesCounter) {
+        if(framesCounter % 10 === 0) {
+          this.framesIndex++;
+    
+          if(this.framesIndex > 1) this.framesIndex = 0;
+        }
+      }
+    
+
       setListeners() {
         document.addEventListener('keydown', (e) => {
           switch(e.keyCode) {
@@ -47,9 +63,7 @@ class Player {
                 this.posY -= this.vy;
                 this.vy -= 10;
               }
-              break;
-            case this.keys.SPACE:
-              this.shoot()
+             
           }
         })
       }

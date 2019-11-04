@@ -5,6 +5,11 @@ const Game = {
     height: undefined,
     fps: 60,
     framesCounter: 0,
+    playerKeys: {
+        TOP_KEY: 38,
+        RIGHT_KEY: 39,
+        LEFT_KEY: 37
+    },
 
 
 
@@ -28,6 +33,7 @@ const Game = {
             this.framesCounter++;
 
             this.drawAll();
+            this.moveAll();
 
 
         }, 1000/this.fps)
@@ -36,7 +42,7 @@ const Game = {
 
     reset: function() {
         this.background = new Background(this.ctx, this.width , this.height)
-        this.player = new Player(this.ctx, this.width * 0.10, this.height * 0.10, "img/pig-right-move.png", this.width, this.height, this.keys);
+        this.player = new Player(this.ctx, 90, 70, "img/pig-right-move.png", "img/pig-left-move.png", this.width, this.height, this.playerKeys);
         // this.ctx, 50, 150, 'img/player.png', this.width,this.height, this.playerKeys
     },
 
@@ -50,12 +56,14 @@ const Game = {
     drawAll: function(){
         this.background.draw();
         this.player.draw(this.framesCounter);
+        
     },
 
 
-    // moveAll: function() {
+    moveAll: function() {
+        this.player.move();
         
-    // }
+    }
  
 
 

@@ -1,16 +1,22 @@
 class Obstacle {
-    constructor(ctx, width, height, gameWidth, gameHeight) {
-      this.ctx = ctx;
-      this.width = width;
-      this.height = height;
-  
-      this.posX = gameWidth;
-      this.posY = gameHeight * 0.98 - this.height;
-  
-      this.vx = 10;
+    constructor(ctx, width, height, gameWidth, gameHeight, posX, posY) {
+        this.ctx = ctx;
+        this.width = width;
+        this.height = height;
+        this.gameWidth = gameWidth;
+        this.gameHeight = gameHeight;
+    
+
+
+        this.posX = posX;
+        this.posY = posY;
+
     }
-  
+
     draw() {
-      this.ctx.fillStyle = 'black';
-      this.ctx.fillRect(this.posX, this.posY, this.width, this.height);
+        this.ctx.fillStyle = "black";
+        this.ctx.fillRect(this.posX, this.posY, this.width, this.height)
     }
+   
+
+}

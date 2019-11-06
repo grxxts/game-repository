@@ -66,24 +66,27 @@ class Player {
 
 
   move() {
-    this.vy = 1;
-    this.posY -= this.posY0
+    // this.vy = 1;
+    // this.posY -= this.posY0
 
     if (this.posY <= this.posY0) {
       this.posY += this.vy;
       this.vy += this.gravity;
-    } 
+    } else {
+      this.vy = 1
+      this.posY = this.posY0
+    }
 
 
-    if (this.right) {
-      //this.posX = this.posX0 + 5;
-      console.log("right")
-    }
-    
-    if (this.left) {
-      //this.posX = this.posxEnd;
-      console.log("left")
-    }
+    // if (this.right) {
+    //   this.posX = this.posX0 + 5;
+    //   console.log("right")
+    // }
+
+    // if (this.left) {
+    //   this.posX = this.posxEnd;
+    //   console.log("left")
+    // }
 
 
   }
@@ -111,9 +114,9 @@ class Player {
             this.posY -= this.vy;
             this.vy -= 12;
 
-     
+
           }
-            break;
+          break;
 
         case this.keys.RIGHT_KEY:
 
@@ -127,6 +130,20 @@ class Player {
           this.right = false
           this.posX -= 8;
           break;
+
+        // case this.keys.TOP_KEY && this.keys.LEFT_KEY:
+
+        //   this.left = true
+        //   this.right = false
+
+
+
+        // case this.keys.TOP_KEY && this.keys.LEFT_RIGHT:
+
+
+        //   this.left = false
+        //   this.right = true
+
 
 
 

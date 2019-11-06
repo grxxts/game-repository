@@ -12,8 +12,8 @@ class Enemy {
         this.imageLeft.src = imageLeft;
 
         this.posX = 15;
-        this.posY = 370;
-        this.vx = 0;
+        this.posY = 450;
+        this.vx = 5;
         this.vy = 0;
 
 
@@ -58,14 +58,21 @@ class Enemy {
     }
 
 
-    move() {
+//  no rebota a la izq.
 
-        if (this.posX <= this.posX0 + 5) {
-            this.posX = this.posX0 + 5;
-          } else if (this.posX >= this.posxEnd) {
-            this.posX = this.posxEnd;
-          }
+    move() {
+      this.posX += this.vx
+     
+      if (this.posX > 900){
+          this.vx *= -1
+      }
+      if (this.posX <= 0){
+          this.vx *= -1
+      }
+      return this.vx
     }
+
+   
 
 
     animate(framesCounter) {

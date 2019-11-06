@@ -30,6 +30,7 @@ const Game = {
     start: function () {
         this.reset()
         this.interval = setInterval(() => {
+            this.clear();
             this.framesCounter++;
 
             this.drawAll();
@@ -37,12 +38,14 @@ const Game = {
             if (this.isCollision()) {
                 this.inPLatform()
             } else {
-                this.player.posY0 = 400
+                this.player.posY0 = 480
             }
-            this.generateObstacles();
             if(this.framesCounter%300==0)this.generateEnemies();
             
             // this.inPLatform();
+            if (this.isCollisionButcher()){
+                console.log("muerto")
+            }
 
         }, 1000 / this.fps)
     },
@@ -53,6 +56,8 @@ const Game = {
         this.player = new Player(this.ctx, 90, 70, "img/pig-right-move.png", "img/pig-left-move.png", this.width, this.height, this.playerKeys);
         this.obstacles = [];
         this.enemies = [];
+        this.generateObstacles();
+
         
 
     },
@@ -60,7 +65,7 @@ const Game = {
 
 
     clear: function() {
-
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     },
 
 
@@ -76,7 +81,7 @@ const Game = {
 
     moveAll: function () {
         this.player.move();
-
+        this.enemies.forEach(enemy=>enemy.move())
 
     },
 
@@ -125,17 +130,20 @@ const Game = {
         return this.obstacles.some(obstacle => (this.player.posX + this.player.width > obstacle.posX && obstacle.posX + obstacle.width > this.player.posX && this.player.posY + this.player.height > obstacle.posY && obstacle.posY + obstacle.height > this.player.posY))
     },
 
+    isCollisionButcher: function (){
+        return this.enemies.some(enemy => (this.player.posX + this.player.width > enemy.posX && enemy.posX + enemy.width > this.player.posX && this.player.posY + this.player.height > enemy.posY && enemy.posY + enemy.height > this.player.posY))
+
+    },
+
 
 
 
 
     inPLatform: function () {
         this.obstacles.forEach((obstacle) => {
-            if (this.player.posX + this.player.width > obstacle.posX && this.player.posX < obstacle.posX + obstacle.width && this.player.posY < obstacle.posY - 65) {
+            if (this.player.posX + 40  > obstacle.posX && this.player.posX - this.player.width/2  < obstacle.posX + obstacle.width  && this.player.posY < obstacle.posY - 65) {
 
                 this.player.posY0 = obstacle.posY - 65;
-                console.log(this.player.posY0)
-
             }
 
 

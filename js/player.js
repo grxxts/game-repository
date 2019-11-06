@@ -66,22 +66,23 @@ class Player {
 
 
   move() {
+    this.vy = 1;
+    this.posY -= this.posY0
+
     if (this.posY <= this.posY0) {
       this.posY += this.vy;
       this.vy += this.gravity;
+    } 
 
-      
 
-    } else {
-      this.vy = 1;
-      this.posY = this.posY0
+    if (this.right) {
+      //this.posX = this.posX0 + 5;
+      console.log("right")
     }
-
-
-    if (this.posX <= this.posX0 + 5) {
-      this.posX = this.posX0 + 5;
-    } else if (this.posX >= this.posxEnd) {
-      this.posX = this.posxEnd;
+    
+    if (this.left) {
+      //this.posX = this.posxEnd;
+      console.log("left")
     }
 
 

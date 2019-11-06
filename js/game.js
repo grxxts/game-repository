@@ -40,7 +40,7 @@ const Game = {
                 this.player.posY0 = 400
             }
             this.generateObstacles();
-            this.generateEnemies();
+            if(this.framesCounter%300==0)this.generateEnemies();
             
             // this.inPLatform();
 
@@ -59,17 +59,17 @@ const Game = {
 
 
 
-    clear: function () {
+    clear: function() {
 
     },
 
 
-    drawAll: function () {
+    drawAll: function() {
         this.background.draw();
         this.player.draw(this.framesCounter);
         // this.enemy.draw(this.framesCounter);
         this.obstacles.forEach(obstacle => obstacle.draw());
-        this.enemies.forEach(enemy => enemy.draw());
+        this.enemies.forEach(enemy => enemy.draw(this.framesCounter));
 
     },
 
@@ -81,7 +81,13 @@ const Game = {
     },
 
     generateEnemies: function() {
-        this.enemies.push(new Enemy(this.ctx, 90, 90, "img/Butcher-right.svg", "img/butcher-left.svg", this.width, this.height, 100,100));
+        if(this.enemies.length<8){
+
+            this.enemies.push(new Enemy(this.ctx, 60, 100, "img/butcher-png.png", 
+            // "img/butcher-left.svg",
+             this.width, this.height, 60,100));
+        }
+        // console.log(this.enemies);
 
     },
 

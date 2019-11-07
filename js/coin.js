@@ -1,12 +1,12 @@
 class Coin {
-    constructor(ctx,image, height) {
+    constructor(ctx,image, height, posX, posY) {
         this.ctx = ctx;
 
         this.image = new Image();
         this.image.src = image;
         this.height = height;
-        this.posX = 400;
-        this.posY = 170;
+        this.posX = posX;
+        this.posY = posY;
         // this.hasAcorn = true;
     }
 

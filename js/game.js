@@ -1,4 +1,8 @@
-const Game = {
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  
+  const Game = {
     canvas: undefined,
     ctx: undefined,
     width: undefined,
@@ -123,8 +127,8 @@ const Game = {
     },
 
     generateCoin: function () {
-        if (this.coins.length < 2) {
-            this.coins.push(new Coin(this.ctx, "img/acorn-custom.png", 50));
+        if (this.coins.length < 1) {
+            this.coins.push(new Coin(this.ctx, "img/acorn-custom.png", 50, randomIntFromInterval(10, 600), randomIntFromInterval(10, 1000)));
 
         }
 
@@ -176,7 +180,7 @@ const Game = {
     generateWinner: function () {
 
         if (this.winners.length <= 1) {
-         this.winners.push(new Winner(this.ctx, 70, 25, this.width, this.height, this.width * 0.9, this.height * 0.6));
+         this.winners.push(new Winner(this.ctx, 70, 25, this.width, this.height, this.width * 0.9, this.height * 0.2));
 
 
         }

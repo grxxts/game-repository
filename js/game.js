@@ -47,7 +47,8 @@ const Game = {
             }
             if(this.framesCounter%300==0)this.generateEnemies();
             if(this.framesCounter%5==0)this.generateCoin();
-            
+            if(this.isCollisionCoin()) this.Winner
+            if(this.isCollisionButcher()) this.gameOver()
             // this.inPLatform();
             if (this.isCollisionButcher()){
                 console.log("muerto")
@@ -68,8 +69,10 @@ const Game = {
         this.coins = [];
         this.obstacles = [];
         this.enemies = [];
+        this.winners = [];
         this.generateObstacles();
         this.generateCoin();
+        this.generateWinner();
         console.log(this.coins)
 
         
@@ -92,8 +95,9 @@ const Game = {
 
        }
 
-        
         this.obstacles.forEach(obstacle => obstacle.draw());
+        this.winners.forEach(winner => winner.draw());
+
         this.enemies.forEach(enemy => enemy.draw(this.framesCounter));
 
     },
@@ -114,7 +118,7 @@ const Game = {
     },
 
     generateEnemies: function() {
-        if(this.enemies.length<8){
+        if(this.enemies.length<4){
 
             this.enemies.push(new Enemy(this.ctx, 60, 100, "img/butcher-png.png", 
             // "img/butcher-left.svg",
@@ -126,7 +130,7 @@ const Game = {
 
     generateObstacles: function () {
 
-        // me genera 8 elementos en el array Whaaaaat??
+
 
 
         if (this.obstacles.length <= 10) {
@@ -157,8 +161,28 @@ const Game = {
         }
 
     },
+
+    generateWinner: function () {
+
+        if (this.winners.length <= 1) {
+        
+         this.winners.push(new Winner(this.ctx, 70, 25, this.width, this.height, this.width * 0.2, this.height * 0.6));
+              
+               
+        }
+
+    },
+
+    
     gameOver: function () {
         clearInterval(this.interval)
+    },
+
+    Winner: function(){
+        if(this.hasAcorn = true && this.player){
+            clearInterval(this.interval)
+        }
+        
     },
 
     isCollision: function () {
@@ -177,6 +201,12 @@ const Game = {
         // return this.coins.some(coin => (this.player.posX + this.player.width > coin.posX && coin.posX + coin.width > this.player.posX && this.player.posY + this.player.height > coin.posY && coin.posY + coin.height > this.player.posY))
         return this.coins.some(coin=>this.player.posX + this.player.width > coin.posX && this.player.posY < coin.posY && this.player.posX < coin.posX + 50 )
     },
+
+    isCollisionWinner : function(){
+        
+    },
+
+    
 
  
 

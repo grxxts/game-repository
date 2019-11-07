@@ -10,6 +10,7 @@ const Game = {
         RIGHT_KEY: 39,
         LEFT_KEY: 37
     },
+    hasAcorn : false ,
 
 
 
@@ -22,7 +23,9 @@ const Game = {
         this.height = window.innerHeight;
         this.canvas.width = this.width;
         this.canvas.height = this.height;
-
+        
+      
+        
 
 
         this.start();
@@ -32,6 +35,7 @@ const Game = {
         this.reset()
         this.interval = setInterval(() => {
             this.clear();
+            
             this.framesCounter++;
             
             this.drawAll();
@@ -49,8 +53,8 @@ const Game = {
                 console.log("muerto")
             }
             if(this.isCollisionCoin()){
-                console.log("money cabron")
-                this.coins = []
+                this.hasAcorn = true 
+                console.log(this.hasAcorn)
             }
 
 
@@ -58,7 +62,7 @@ const Game = {
     },
 
 
-    reset: function () {
+    reset: function() {
         this.background = new Background(this.ctx, this.width, this.height)
         this.player = new Player(this.ctx, 90, 70, "img/pig-right-move.png", "img/pig-left-move.png", this.width, this.height, this.playerKeys);
         this.coins = [];
@@ -80,10 +84,16 @@ const Game = {
 
 
     drawAll: function() {
+      
         this.background.draw();
         this.player.draw(this.framesCounter);
-        this.obstacles.forEach(obstacle => obstacle.draw());
+       if(!this.hasAcorn){
         this.coins.forEach(coin => coin.draw());
+
+       }
+
+        
+        this.obstacles.forEach(obstacle => obstacle.draw());
         this.enemies.forEach(enemy => enemy.draw(this.framesCounter));
 
     },
@@ -168,7 +178,7 @@ const Game = {
         return this.coins.some(coin=>this.player.posX + this.player.width > coin.posX && this.player.posY < coin.posY && this.player.posX < coin.posX + 50 )
     },
 
-
+ 
 
     inPLatform: function () {
         this.obstacles.forEach((obstacle) => {

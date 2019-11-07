@@ -58,7 +58,6 @@ class Enemy {
     }
 
 
-//  no rebota a la izq.
 
     move() {
       this.posX += this.vx

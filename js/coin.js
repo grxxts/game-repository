@@ -7,7 +7,7 @@ class Coin {
         this.height = height;
         this.posX = 400;
         this.posY = 170;
-
+        // this.hasAcorn = true;
     }
 
     draw() {

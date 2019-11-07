@@ -7,3 +7,9 @@ html, body {
 body {
     overflow: hidden;
 }
+
+button {
+    position: absolute;
+    top: 10px;
+    left: 1000px;
+}

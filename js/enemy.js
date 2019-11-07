@@ -62,7 +62,7 @@ class Enemy {
     move() {
       this.posX += this.vx
      
-      if (this.posX > 900){
+      if (this.posX > 1300){
           this.vx *= -1
       }
       if (this.posX <= 0){

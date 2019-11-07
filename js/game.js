@@ -132,7 +132,7 @@ function randomIntFromInterval(min, max) { // min and max included
 
     generateCoin: function () {
         if (this.coins.length < 1) {
-            this.coins.push(new Coin(this.ctx, "img/acorn-custom.png", 50, randomIntFromInterval(10, 600), randomIntFromInterval(10, 1000)));
+            this.coins.push(new Coin(this.ctx, "img/acorn-custom.png", 50, randomIntFromInterval(100, 1200), randomIntFromInterval(300, 600)-150));
 
         }
 

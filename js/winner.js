@@ -5,7 +5,7 @@ class Winner {
         this.height = height;
         this.gameWidth = gameWidth;
         this.gameHeight = gameHeight;
-    
+
 
 
         this.posX = posX;
@@ -14,9 +14,12 @@ class Winner {
     }
 
     draw() {
-        this.ctx.fillStyle = "green"
+        this.ctx.fillStyle = "rgba(255, 255, 255, 0.01)";
         this.ctx.fillRect(this.posX, this.posY, this.width, this.height)
     }
-   
+
 
 }
+
+
+

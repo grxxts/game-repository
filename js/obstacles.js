@@ -14,7 +14,7 @@ class Obstacle {
     }
 
     draw() {
-        this.ctx.fillStyle = "red"
+        this.ctx.fillStyle = "brown"
         this.ctx.fillRect(this.posX, this.posY, this.width, this.height)
     }
    

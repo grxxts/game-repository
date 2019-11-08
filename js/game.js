@@ -16,6 +16,9 @@ function randomIntFromInterval(min, max) { // min and max included
     },
     score: 0,
     hasAcorn: false,
+    imgGameOver: new Image(),
+    realGO: false,
+
 
 
 
@@ -66,7 +69,6 @@ function randomIntFromInterval(min, max) { // min and max included
             if (this.framesCounter % 300 == 0) this.generateEnemies();
             if (this.framesCounter % 5 == 0) this.generateCoin();
             if (this.isCollisionCoin()) this.Winner
-            if (this.isCollisionButcher()) this.gameOver()
             // this.inPLatform();
             if (this.isCollisionButcher()) {
                 console.log("muerto")
@@ -75,6 +77,7 @@ function randomIntFromInterval(min, max) { // min and max included
                 this.hasAcorn = true
                 console.log(this.hasAcorn)
             }
+            if (this.isCollisionButcher()) this.gameOver()
 
 
         }, 1000 / this.fps)
@@ -107,7 +110,7 @@ function randomIntFromInterval(min, max) { // min and max included
 
 
     drawAll: function () {
-
+        this.imgGameOver.src = "img/Web 1920 – 3.png"
         this.background.draw();
         this.player.draw(this.framesCounter);
         if (!this.hasAcorn) {
@@ -154,26 +157,26 @@ function randomIntFromInterval(min, max) { // min and max included
         if (this.obstacles.length <= 10) {
             for (i = 0; i <= 10; i++) {
                 if (i === 0) {
-                    this.obstacles.push(new Obstacle(this.ctx, 100, 5, this.width, this.height, this.width * 0.01, this.height * 0.5))
+                    this.obstacles.push(new Obstacle(this.ctx, 100, 0.5, this.width, this.height, this.width * 0.01, this.height * 0.5))
                 } else if (i === 1) {
-                    this.obstacles.push(new Obstacle(this.ctx, 100, 5, this.width, this.height, this.width * 0.12, this.height * 0.32))
+                    this.obstacles.push(new Obstacle(this.ctx, 100, 0.5, this.width, this.height, this.width * 0.12, this.height * 0.32))
                 } else if (i === 2) {
-                    this.obstacles.push(new Obstacle(this.ctx, 80, 5, this.width, this.height, this.width * 0.20, this.height * 0.6))
+                    this.obstacles.push(new Obstacle(this.ctx, 80, 0.5, this.width, this.height, this.width * 0.20, this.height * 0.6))
                 } else if (i === 3) {
-                    this.obstacles.push(new Obstacle(this.ctx, 100, 5, this.width, this.height, this.width * 0.32, this.height * 0.5))
+                    this.obstacles.push(new Obstacle(this.ctx, 100, 0.5, this.width, this.height, this.width * 0.32, this.height * 0.5))
                 } else if (i === 4) {
-                    this.obstacles.push(new Obstacle(this.ctx, 100, 5, this.width, this.height, this.width * 0.46, this.height * 0.32))
+                    this.obstacles.push(new Obstacle(this.ctx, 100, 0.5, this.width, this.height, this.width * 0.46, this.height * 0.32))
                 } else if (i === 5) {
-                    this.obstacles.push(new Obstacle(this.ctx, 100, 5, this.width, this.height, this.width * 0.58, this.height * 0.6))
+                    this.obstacles.push(new Obstacle(this.ctx, 100, 0.5, this.width, this.height, this.width * 0.58, this.height * 0.6))
                 } else if (i === 6) {
-                    this.obstacles.push(new Obstacle(this.ctx, 100, 5, this.width, this.height, this.width * 0.70, this.height * 0.5))
+                    this.obstacles.push(new Obstacle(this.ctx, 100, 0.5, this.width, this.height, this.width * 0.70, this.height * 0.5))
                 } else if (i === 7) {
-                    this.obstacles.push(new Obstacle(this.ctx, 100, 5, this.width, this.height, this.width * 0.82, this.height * 0.32))
+                    this.obstacles.push(new Obstacle(this.ctx, 100, 0.5, this.width, this.height, this.width * 0.82, this.height * 0.32))
                 } else if (i === 8) {
-                    this.obstacles.push(new Obstacle(this.ctx, 70, 5, this.width, this.height, this.width * 0.94, this.height * 0.6))
+                    this.obstacles.push(new Obstacle(this.ctx, 70, 0.5, this.width, this.height, this.width * 0.94, this.height * 0.6))
 
                 } else
-                    this.obstacles.push(new Obstacle(this.ctx, 100, 5, this.width, this.height, this.width * 1, this.height * 0.6))
+                    this.obstacles.push(new Obstacle(this.ctx, 100, 0.5, this.width, this.height, this.width * 1, this.height * 0.6))
 
             }
         }
@@ -184,7 +187,7 @@ function randomIntFromInterval(min, max) { // min and max included
     generateWinner: function () {
 
         if (this.winners.length <= 1) {
-         this.winners.push(new Winner(this.ctx, 70, 25, this.width, this.height, this.width * 0.9, this.height * 0.1));
+         this.winners.push(new Winner(this.ctx, 20, 20, this.width, this.height, this.width * 0.93, this.height * 0.1));
 
 
         }
@@ -193,7 +196,11 @@ function randomIntFromInterval(min, max) { // min and max included
 
 
     gameOver: function () {
-        clearInterval(this.interval)
+        this.ctx.drawImage(this.imgGameOver, 0, 0 , this.width, this.height);
+        this.realGO = true
+        if (this.realGO = true){
+        clearInterval(this.interval)}
+
     },
 
     // Winner: function () {

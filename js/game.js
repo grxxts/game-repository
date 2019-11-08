@@ -17,6 +17,7 @@ function randomIntFromInterval(min, max) { // min and max included
     score: 0,
     hasAcorn: false,
     imgGameOver: new Image(),
+    imgWin: new Image(),
     realGO: false,
 
 
@@ -63,8 +64,13 @@ function randomIntFromInterval(min, max) { // min and max included
             // }
             if(this.framesCounter % 100 === 0) this.score++;
             if(this.isCollisionWinner() && this.hasAcorn){
-                alert("you have saved yourself from being eaten")
+                this.ctx.drawImage(this.imgWin, 0, 0 , this.width, this.height)
+                clearInterval(this.interval)
+                setTimeout(function(){alert("you have saved yourself from being eaten")}, 500
+                )
+
             }
+                
            
             if (this.framesCounter % 300 == 0) this.generateEnemies();
             if (this.framesCounter % 5 == 0) this.generateCoin();
@@ -111,6 +117,7 @@ function randomIntFromInterval(min, max) { // min and max included
 
     drawAll: function () {
         this.imgGameOver.src = "img/Web 1920 – 3.png"
+        this.imgWin.src = "img/Web 1920 – 4.png"
         this.background.draw();
         this.player.draw(this.framesCounter);
         if (!this.hasAcorn) {

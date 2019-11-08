@@ -7,9 +7,10 @@ class Winner {
         this.gameHeight = gameHeight;
 
 
-
+        
         this.posX = posX;
         this.posY = posY;
+        
 
     }
 

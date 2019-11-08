@@ -28,6 +28,7 @@ class Player {
     this.setListeners();
     this.right = true
     this.left = false
+    this.oink =  new Audio("audio/Double Snort-SoundBible.com-1323775209.wav")
 
   }
 
@@ -113,6 +114,7 @@ class Player {
           if (this.posY >= this.posY0) {
             this.posY -= this.vy;
             this.vy -= 12;
+            this.oink.play();
 
 
           }

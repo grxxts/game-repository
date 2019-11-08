@@ -66,6 +66,7 @@ function randomIntFromInterval(min, max) { // min and max included
             if(this.isCollisionWinner() && this.hasAcorn){
                 this.ctx.drawImage(this.imgWin, 0, 0 , this.width, this.height)
                 clearInterval(this.interval)
+                this.win.play()
                 setTimeout(function(){alert("you have saved yourself from being eaten")}, 500
                 )
 
@@ -103,6 +104,7 @@ function randomIntFromInterval(min, max) { // min and max included
         this.generateWinner();
         ScoreBoard.init(this.ctx, this.score)
         console.log(this.coins)
+        this.win = new Audio("audio/Ta Da-SoundBible.com-1884170640.wav")
 
 
 
